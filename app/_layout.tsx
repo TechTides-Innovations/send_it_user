@@ -40,6 +40,10 @@ const RootLayout = () => {
       <Stack.Screen name="register" />
       <Stack.Screen name="forgotpassword" />
       <Stack.Screen name="changepassword" />
+      <Stack.Screen
+        name="(tabs)"
+        options={{ animation: "slide_from_bottom" }}
+      />
     </Stack>
   );
 };

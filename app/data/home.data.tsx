@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { images } from "../../imports/images.imports";
+import { icons, images } from "../../imports/images.imports";
 import "react-native-get-random-values";
 const homeOptions = [
   {
@@ -24,4 +24,31 @@ const homeOptions = [
   },
 ];
 
-export { homeOptions };
+const currentTracking = [
+  {
+    id: uuidv4(),
+    name: "Cindy Rice (5KG) - 3 Bags",
+    status: "Transit",
+    number: "#4126736233-56UC",
+    date: "7/18/2023",
+    icon: icons.object,
+  },
+  {
+    id: uuidv4(),
+    name: "Cindy Rice (5KG) - 3 Bags",
+    status: "Transit",
+    number: "#4126736233-56UC",
+    date: "7/18/2023",
+    icon: icons.object,
+  },
+  {
+    id: uuidv4(),
+    name: "Cindy Rice (5KG) - 3 Bags",
+    status: "Transit",
+    number: "#4126736233-56UC",
+    date: "7/18/2023",
+    icon: icons.object,
+  },
+];
+
+export { homeOptions, currentTracking };

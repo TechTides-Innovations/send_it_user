@@ -7,6 +7,8 @@ import store from "../assets/store.png";
 import restaurant from "../assets/rest.png";
 import send from "../assets/package.png";
 import price from "../assets/price.png";
+import object from "../assets/objects.png";
+import araba from "../assets/araba.png";
 const images = {
   onboardingOne,
   onboardingTwo,
@@ -17,6 +19,11 @@ const images = {
   restaurant,
   send,
   price,
+  araba,
 };
 
-export { images };
+const icons = {
+  object,
+};
+
+export { images, icons };

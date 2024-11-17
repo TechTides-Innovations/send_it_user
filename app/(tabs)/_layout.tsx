@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Keyboard, View, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { colors } from "../../constants/constants.global";
-import {
-  FontAwesome,
-  Entypo,
-  FontAwesome5,
-  Feather,
-  Ionicons,
-} from "@expo/vector-icons";
+import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
 
 const TabLayout = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -43,16 +37,21 @@ const TabLayout = () => {
         screenOptions={{
           tabBarStyle: {
             backgroundColor: colors.main,
-            height: isKeyboardVisible ? 0 : 75,
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
             width: "100%",
+            height: isKeyboardVisible ? 0 : 75,
+            elevation: 10,
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: isKeyboardVisible ? 0 : 15,
+            paddingBottom: isKeyboardVisible ? 0 : 18,
             display: isKeyboardVisible ? "none" : "flex",
+            // Shadow styles for iOS
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
           },
           headerShown: false,
           tabBarLabelStyle: {
