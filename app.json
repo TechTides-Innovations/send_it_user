@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "send_it",
-    "slug": "send_it",
-    "scheme": "send_it",
+    "name": "sendit",
+    "slug": "sendit",
+    "scheme": "sendit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,7 +13,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AIzaSyCk0dBFW1BjUtK3Dold2tHvWQzwWxJVadw"
+      }
     },
     "android": {
       "adaptiveIcon": {

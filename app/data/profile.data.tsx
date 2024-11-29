@@ -39,6 +39,10 @@ const profileMenu = [
     id: uuidv4(),
     name: "About",
   },
+  {
+    id: uuidv4(),
+    name: "Logout",
+  },
 ];
 
 export { profileMenu };

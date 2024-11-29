@@ -9,6 +9,7 @@ import send from "../assets/package.png";
 import price from "../assets/price.png";
 import object from "../assets/objects.png";
 import araba from "../assets/araba.png";
+import event from "../assets/event.png";
 const images = {
   onboardingOne,
   onboardingTwo,
@@ -19,6 +20,7 @@ const images = {
   restaurant,
   send,
   price,
+  event,
   araba,
 };
 

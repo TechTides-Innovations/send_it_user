@@ -12,8 +12,15 @@ import { StatusBar } from "expo-status-bar";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors, textSize } from "../../constants/constants.global";
 import { profileMenu } from "../data/profile.data";
+import { router } from "expo-router";
 
 const Profile = () => {
+  const handleProfileNavigation = (name: string) => {
+    switch (name) {
+      case "Account Settings":
+        return router.push("/accountsettings");
+    }
+  };
   return (
     <React.Fragment>
       <StatusBar style="dark" />
@@ -25,12 +32,12 @@ const Profile = () => {
           style={{ paddingHorizontal: 20 }}
         >
           <View className="flex-row items-center justify-between h-full mt-5">
-            <View className="flex-row items-center gap-4">
+            <View className="flex-row items-center gap-2">
               <Text
                 style={textSize.twoXl}
                 className="font-pmedium text-xl text-white"
               >
-                Hi , Araba Edumadze
+                Hi , Araba Harrison
               </Text>
               <Ionicons name="pencil" size={24} color={colors.main} />
             </View>
@@ -41,7 +48,7 @@ const Profile = () => {
                 className="w-16 h-16 rounded-full relative"
               />
               <Ionicons
-                className="absolute -bottom-2 -right-3"
+                className="absolute -bottom-2 -right-1"
                 name="camera"
                 size={24}
                 color={colors.main}
@@ -61,11 +68,12 @@ const Profile = () => {
             automaticallyAdjustContentInsets
             keyboardShouldPersistTaps="handled"
           >
-            <Text className="font-pmedium text-xl">Profile Settings</Text>
+            <Text className="font-psemibold text-xl">Profile Settings</Text>
             <View style={{ gap: 10, marginTop: 10 }}>
               {profileMenu &&
                 profileMenu.map((item) => (
                   <TouchableOpacity
+                    onPress={() => handleProfileNavigation(item.name)}
                     key={item.id}
                     className="border-b pt-5 pb-7 flex-row items-center justify-between"
                   >

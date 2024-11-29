@@ -16,6 +16,7 @@ import { colors } from "../../constants/constants.global";
 import { currentTracking, homeOptions } from "../data/home.data";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ScrollView } from "react-native-virtualized-view";
+import { router } from "expo-router";
 
 const promos = [
   {
@@ -46,6 +47,13 @@ interface CurrentTrackingType {
   status: string;
 }
 const Home = () => {
+  const handleRouting = (name: string) => {
+    switch (name) {
+      case "Send Package":
+        return router.push("/(sendpackage)/sendpackage");
+    }
+  };
+
   const Promos: React.FC<PromosType> = ({ image }) => {
     return (
       <Image
@@ -89,7 +97,7 @@ const Home = () => {
       <ImageBackground
         resizeMode="cover"
         source={images.mask}
-        className="w-full relative z-10 h-72 flex-row justify-end items-center"
+        className="w-full relative z-10 h-64 flex-row justify-end items-center"
       >
         <View className="mr-10 flex-col gap-2">
           <Text className="font-psemibold text-right text-2xl text-white">
@@ -141,11 +149,15 @@ const Home = () => {
           >
             {homeOptions &&
               homeOptions.map((item) => (
-                <TouchableOpacity key={item.id} className="items-center gap-2">
+                <TouchableOpacity
+                  key={item.id}
+                  onPress={() => handleRouting(item.name)}
+                  className="items-center gap-2"
+                >
                   <Image
                     source={item.icon}
-                    resizeMode="cover"
-                    className="w-16 h-16"
+                    resizeMode="contain"
+                    className="w-20 h-20"
                   />
                   <Text className="font-pmedium text-sm">{item.name}</Text>
                 </TouchableOpacity>
@@ -193,6 +205,7 @@ const Home = () => {
               <FlatList
                 showsHorizontalScrollIndicator={false}
                 data={currentTracking}
+                scrollEnabled={false}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                   <CurrentTracking

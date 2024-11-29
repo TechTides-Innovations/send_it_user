@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Keyboard, View, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { colors } from "../../constants/constants.global";
-import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
+import { Entypo, Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 
 const TabLayout = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -38,11 +38,11 @@ const TabLayout = () => {
           tabBarStyle: {
             backgroundColor: colors.main,
             width: "100%",
-            height: isKeyboardVisible ? 0 : 75,
+            height: isKeyboardVisible ? 0 : 85,
             elevation: 10,
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: isKeyboardVisible ? 0 : 18,
+            paddingBottom: isKeyboardVisible ? 0 : 30,
             display: isKeyboardVisible ? "none" : "flex",
             // Shadow styles for iOS
             shadowColor: "#000",
@@ -55,8 +55,8 @@ const TabLayout = () => {
           },
           headerShown: false,
           tabBarLabelStyle: {
-            fontFamily: "Poppins-SemiBold",
-            fontSize: 12,
+            fontFamily: "Poppins-Medium",
+            fontSize: 13,
             marginTop: -5,
           },
           tabBarActiveTintColor: colors.primary,
@@ -80,8 +80,8 @@ const TabLayout = () => {
           name="activity"
           options={{
             tabBarIcon: ({ focused }) => (
-              <Feather
-                name="activity"
+              <FontAwesome
+                name="dashboard"
                 size={22}
                 color={focused ? colors.primary : colors.gray}
               />
@@ -94,7 +94,7 @@ const TabLayout = () => {
           options={{
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name="chatbox-outline"
+                name="chatbubbles"
                 size={22}
                 color={focused ? colors.primary : colors.gray}
               />
@@ -106,7 +106,7 @@ const TabLayout = () => {
           name="profile"
           options={{
             tabBarIcon: ({ focused }) => (
-              <Feather
+              <FontAwesome
                 name="user"
                 size={22}
                 color={focused ? colors.primary : colors.gray}

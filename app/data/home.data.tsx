@@ -19,8 +19,8 @@ const homeOptions = [
   },
   {
     id: uuidv4(),
-    name: "Price Check",
-    icon: images.price,
+    name: "Events",
+    icon: images.event,
   },
 ];
 
