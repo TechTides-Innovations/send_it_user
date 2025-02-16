@@ -38,20 +38,19 @@ const TabLayout = () => {
           tabBarStyle: {
             backgroundColor: colors.main,
             width: "100%",
-            height: isKeyboardVisible ? 0 : 85,
+            height: isKeyboardVisible ? 0 : 100,
             elevation: 10,
             alignItems: "center",
             justifyContent: "center",
-            paddingBottom: isKeyboardVisible ? 0 : 30,
+            paddingBottom: isKeyboardVisible ? 0 : 35,
             display: isKeyboardVisible ? "none" : "flex",
-            // Shadow styles for iOS
-            shadowColor: "#000",
+            shadowColor: "lightGray",
             shadowOffset: {
-              width: 0,
+              width: 1,
               height: 1,
             },
             shadowOpacity: 0.25,
-            shadowRadius: 4,
+            shadowRadius: 2,
           },
           headerShown: false,
           tabBarLabelStyle: {

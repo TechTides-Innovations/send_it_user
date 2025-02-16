@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import "../global.css";
 import * as Font from "expo-font";
@@ -36,7 +35,7 @@ const RootLayout = () => {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="login" />
+      <Stack.Screen name="login" options={{ animation: "slide_from_bottom" }} />
       <Stack.Screen name="register" />
       <Stack.Screen name="forgotpassword" />
       <Stack.Screen name="changepassword" />

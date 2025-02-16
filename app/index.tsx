@@ -63,7 +63,7 @@ const Index = () => {
       >
         {item.title}
       </Text>
-      <Text className="font-pregular text-xl my-2" style={[styles.description]}>
+      <Text className="font-pregular text-lg my-2" style={[styles.description]}>
         {item.description}
       </Text>
     </View>

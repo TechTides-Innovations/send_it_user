@@ -11,12 +11,12 @@ import {
 } from "react-native";
 import React from "react";
 import { images } from "../../imports/images.imports";
-import Feather from "@expo/vector-icons/Feather";
-import { colors } from "../../constants/constants.global";
 import { currentTracking, homeOptions } from "../data/home.data";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ScrollView } from "react-native-virtualized-view";
 import { router } from "expo-router";
+import { colors } from "../../constants/constants.global";
+import { Feather } from "@expo/vector-icons";
 
 const promos = [
   {
@@ -106,7 +106,7 @@ const Home = () => {
           <Text className="font-psemibold text-right text-2xl text-white">
             Fast Delivery
           </Text>
-          <Text className="text-white font-pmedium text-right text-sm">
+          <Text className="text-white font-pmedium text-right text-xs">
             Get essentials and more, delivered fast
           </Text>
         </View>
@@ -141,10 +141,10 @@ const Home = () => {
         </View>
       </ImageBackground>
 
-      <View className="flex-1">
+      <View className="flex-1 mt-5">
         <ScrollView>
           <View
-            className="flex-row mt-14 mb-5 justify-between"
+            className="flex-row mt-8 mb-5 justify-between"
             style={{ paddingHorizontal: 20 }}
           >
             {homeOptions &&
