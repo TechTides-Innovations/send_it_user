@@ -14,6 +14,7 @@ import { Feather } from "@expo/vector-icons";
 import { colors, textSize } from "../../constants/constants.global";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { savedPlaces } from "../../data/data.global";
+import { router } from "expo-router";
 
 const SendPackage = () => {
   const [pickupLocation, setPickupLocation] = useState("");
@@ -24,6 +25,7 @@ const SendPackage = () => {
 
   const handleOpen = (input: "pickup" | "destination") => {
     setFocusedInput(input);
+    router.push("/maps");
   };
 
   return (
@@ -42,20 +44,14 @@ const SendPackage = () => {
               <Foundation name="target-two" size={20} color="blue" />
               <Text className="font-pregular">Pickup Location</Text>
             </View>
-            <View className="flex-row items-center justify-between gap-5">
-              <TextInput
-                placeholder="Enter pickup"
-                editable={false}
-                value={pickupLocation}
-                className="font-pregular text-base p-3 flex-1 border border-gray mt-2 rounded-lg"
-              />
-              <Feather
-                onPress={() => handleOpen("pickup")}
-                name="edit"
-                size={20}
-                color={colors.gray}
-              />
-            </View>
+            <Pressable
+              onPress={() => handleOpen("pickup")}
+              className="border p-4 mt-3 border-gray rounded-lg"
+            >
+              <Text className="font-pregular text-gray text-sm">
+                Enter Pickup
+              </Text>
+            </Pressable>
           </View>
 
           {/* Destination */}
@@ -64,25 +60,16 @@ const SendPackage = () => {
               <Foundation name="target-two" size={20} color="red" />
               <Text className="font-pregular">Destination</Text>
             </View>
-            <View className="flex-row items-center justify-between gap-5">
-              <TextInput
-                editable={false}
-                placeholder="Enter destination"
-                value={destination}
-                className="font-pregular text-base p-3 flex-1 border border-gray mt-2 rounded-lg"
-              />
-              <Feather
-                onPress={() => handleOpen("destination")}
-                name="edit"
-                size={20}
-                color={colors.gray}
-              />
-            </View>
+            <Pressable className="border p-4 mt-3 border-gray rounded-lg">
+              <Text className="font-pregular text-gray text-sm">
+                Enter Destination
+              </Text>
+            </Pressable>
           </View>
         </View>
 
         {/* Saved Addresses */}
-        <View className="mt-56 mx-6">
+        <View className="mt-56 mx-4">
           <Text className="font-pmedium" style={[textSize.lg]}>
             Saved address
           </Text>

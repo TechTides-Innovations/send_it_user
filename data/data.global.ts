@@ -6,19 +6,19 @@ const savedPlaces = [
   {
     id: 1,
     name: "Home",
-    location: "Kartasura, Sukoharjo Regency, Central Java",
+    location: "Jasmine, Street 9",
     icon: home,
   },
   {
     id: 2,
     name: "Work",
-    location: "Kartasura, Sukoharjo Regency, Central Java",
+    location: "Ramjack Technology Solutions",
     icon: work,
   },
   {
     id: 3,
     name: "Family",
-    location: "Kartasura, Sukoharjo Regency, Central Java",
+    location: "Mile 7",
     icon: family,
   },
 ];

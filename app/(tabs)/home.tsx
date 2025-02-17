@@ -50,7 +50,7 @@ const Home = () => {
   const handleRouting = (name: string) => {
     switch (name) {
       case "Send Package":
-        return router.push("/(sendpackage)/sendpackage");
+        return router.push("/maps");
     }
   };
 

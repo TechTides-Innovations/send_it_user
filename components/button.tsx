@@ -27,7 +27,7 @@ const Button = ({
       onPress={onPress}
       style={{
         backgroundColor: bgColor,
-        paddingVertical: 14,
+        paddingVertical: 12,
         borderRadius: 10,
         width: "100%",
         flexDirection: "row",

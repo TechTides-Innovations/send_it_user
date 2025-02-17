@@ -6,7 +6,7 @@ const SendLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="sendpackage" />
-      <Stack.Screen name="maps" options={{ presentation: "modal" }} />
+      <Stack.Screen name="maps" />
     </Stack>
   );
 };
