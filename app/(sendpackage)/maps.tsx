@@ -10,7 +10,7 @@ import * as Location from "expo-location";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { colors, textSize } from "../../constants/constants.global";
 import polyline from "@mapbox/polyline";
-import { EvilIcons } from "@expo/vector-icons";
+import { EvilIcons, Feather, Ionicons } from "@expo/vector-icons";
 import { Back, Button } from "../../components";
 import { StatusBar } from "expo-status-bar";
 import { savedPlaces } from "../../data/data.global";
@@ -79,6 +79,23 @@ const Maps = () => {
       setLoadingRoute(false);
     }
   };
+  const mapStyle = [
+    {
+      featureType: "poi",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+  ];
 
   useEffect(() => {
     const points: LatLng[] = [];
@@ -194,6 +211,7 @@ const Maps = () => {
         ref={mapRef}
         provider={PROVIDER_GOOGLE}
         initialRegion={myLocation}
+        customMapStyle={mapStyle}
         style={{ flex: 1, marginBottom: BOTTOM_VIEW_HEIGHT }}
       >
         {!pickupLocation && !deliveryLocation && (
@@ -203,10 +221,11 @@ const Maps = () => {
         {pickupLocation && (
           <Marker
             coordinate={pickupLocation}
-            pinColor="red"
             title="Pickup Location"
             description={pickupLocation.address}
-          />
+          >
+            <Feather name="package" size={24} color="red" />
+          </Marker>
         )}
 
         {deliveryLocation && (
@@ -215,7 +234,9 @@ const Maps = () => {
             pinColor="green"
             title="Delivery Location"
             description={deliveryLocation.address}
-          />
+          >
+            <Feather name="package" size={24} color="green" />
+          </Marker>
         )}
 
         {routeCoordinates.length > 0 && (

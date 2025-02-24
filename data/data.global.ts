@@ -18,7 +18,7 @@ const savedPlaces = [
   {
     id: 3,
     name: "Family",
-    location: "Mile 7",
+    location: "Konkoband Production House",
     icon: family,
   },
 ];

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Keyboard, View, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import { colors } from "../../constants/constants.global";
-import { Entypo, Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TabLayout = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
@@ -10,15 +10,11 @@ const TabLayout = () => {
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       "keyboardDidShow",
-      () => {
-        setIsKeyboardVisible(true);
-      }
+      () => setIsKeyboardVisible(true)
     );
     const keyboardDidHideListener = Keyboard.addListener(
       "keyboardDidHide",
-      () => {
-        setIsKeyboardVisible(false);
-      }
+      () => setIsKeyboardVisible(false)
     );
 
     return () => {
@@ -36,40 +32,37 @@ const TabLayout = () => {
       <Tabs
         screenOptions={{
           tabBarStyle: {
-            backgroundColor: colors.main,
-            width: "100%",
+            backgroundColor: "#ffffff",
             height: isKeyboardVisible ? 0 : 100,
-            elevation: 10,
-            alignItems: "center",
-            justifyContent: "center",
-            paddingBottom: isKeyboardVisible ? 0 : 35,
-            display: isKeyboardVisible ? "none" : "flex",
-            shadowColor: "lightGray",
-            shadowOffset: {
-              width: 1,
-              height: 1,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 2,
+            borderTopWidth: 0,
+            elevation: 8,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: -4 },
+            shadowOpacity: 0.08,
+            shadowRadius: 12,
+            paddingHorizontal: 16,
           },
           headerShown: false,
           tabBarLabelStyle: {
-            fontFamily: "Poppins-Medium",
-            fontSize: 13,
-            marginTop: -5,
+            fontFamily: "Poppins-SemiBold",
+            fontSize: 11,
+            marginBottom: 4,
           },
           tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.gray,
+          tabBarInactiveTintColor: "#94a3b8",
+          tabBarItemStyle: {
+            paddingVertical: 8,
+          },
         }}
       >
         <Tabs.Screen
           name="home"
           options={{
             tabBarIcon: ({ focused }) => (
-              <Entypo
-                name="home"
-                size={22}
-                color={focused ? colors.primary : colors.gray}
+              <MaterialCommunityIcons
+                name={focused ? "home" : "home-outline"}
+                size={28}
+                color={focused ? colors.primary : "#94a3b8"}
               />
             ),
             tabBarLabel: "Home",
@@ -79,10 +72,10 @@ const TabLayout = () => {
           name="activity"
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome
-                name="dashboard"
-                size={22}
-                color={focused ? colors.primary : colors.gray}
+              <MaterialCommunityIcons
+                name={focused ? "chart-box" : "chart-box-outline"}
+                size={28}
+                color={focused ? colors.primary : "#94a3b8"}
               />
             ),
             tabBarLabel: "Activity",
@@ -92,23 +85,28 @@ const TabLayout = () => {
           name="inbox"
           options={{
             tabBarIcon: ({ focused }) => (
-              <Ionicons
-                name="chatbubbles"
-                size={22}
-                color={focused ? colors.primary : colors.gray}
+              <MaterialCommunityIcons
+                name={focused ? "message-text" : "message-text-outline"}
+                size={28}
+                color={focused ? colors.primary : "#94a3b8"}
               />
             ),
             tabBarLabel: "Inbox",
+            tabBarBadge: 3,
+            tabBarBadgeStyle: {
+              color: colors.main,
+              backgroundColor: colors.primary,
+            }, // Remove if not needed
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
             tabBarIcon: ({ focused }) => (
-              <FontAwesome
-                name="user"
-                size={22}
-                color={focused ? colors.primary : colors.gray}
+              <MaterialCommunityIcons
+                name={focused ? "account" : "account-outline"}
+                size={28}
+                color={focused ? colors.primary : "#94a3b8"}
               />
             ),
             tabBarLabel: "Profile",
