@@ -79,7 +79,7 @@ export default InputField;
 
 const styles = StyleSheet.create({
   textInput: {
-    padding: 14,
+    padding: 13,
     borderRadius: 14,
     fontFamily: "poppins-medium",
   },

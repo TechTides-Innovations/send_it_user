@@ -33,13 +33,10 @@ const Profile = () => {
         >
           <View className="flex-row items-center justify-between h-full mt-5">
             <View className="flex-row items-center gap-2">
-              <Text
-                style={textSize.twoXl}
-                className="font-pmedium text-xl text-white"
-              >
+              <Text style={textSize.xl} className="font-pmedium text-white">
                 Hi , Araba Harrison
               </Text>
-              <Ionicons name="pencil" size={24} color={colors.main} />
+              <Ionicons name="pencil" size={20} color={colors.main} />
             </View>
             <View>
               <Image

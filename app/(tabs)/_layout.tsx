@@ -40,7 +40,7 @@ const TabLayout = () => {
             shadowOffset: { width: 0, height: -4 },
             shadowOpacity: 0.08,
             shadowRadius: 12,
-            paddingHorizontal: 16,
+            paddingHorizontal: 14,
           },
           headerShown: false,
           tabBarLabelStyle: {

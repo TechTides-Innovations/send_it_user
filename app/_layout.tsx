@@ -26,11 +26,7 @@ const RootLayout = () => {
           "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
           "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
         });
-
-        // Request location permission
         await Location.requestForegroundPermissionsAsync();
-
-        // Everything is ready
         setAppReady(true);
       } catch (error) {
         console.warn("Error loading app resources:", error);
@@ -67,7 +63,7 @@ const RootLayout = () => {
         <Stack.Screen name="changepassword" />
         <Stack.Screen
           name="(tabs)"
-          options={{ animation: "slide_from_bottom" }}
+          options={{ animation: "slide_from_right" }}
         />
       </Stack>
     </View>

@@ -5,8 +5,8 @@ import { Stack } from "expo-router";
 const SendLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="sendpackage" />
       <Stack.Screen name="maps" />
+      <Stack.Screen name="itemdetails" />
     </Stack>
   );
 };

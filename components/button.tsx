@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React from "react";
-import { textSize } from "../constants/constants.global";
+import { colors, textSize } from "../constants/constants.global";
 
 type ButtonProps = {
   bgColor: string;
@@ -13,6 +13,7 @@ type ButtonProps = {
   onPress?: () => void;
   text: string;
   loading?: boolean;
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -20,13 +21,14 @@ const Button = ({
   textColor,
   onPress,
   text,
+  disabled = false,
   loading = false,
 }: ButtonProps) => {
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={disabled === false ? onPress : () => null}
       style={{
-        backgroundColor: bgColor,
+        backgroundColor: disabled ? colors.gray : bgColor,
         paddingVertical: 12,
         borderRadius: 10,
         width: "100%",

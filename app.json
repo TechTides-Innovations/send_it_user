@@ -34,9 +34,16 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow SendIt to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Allow SendiT to use your location."
         }
-      ]
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow SendiT to access your contacts."
+        }
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

@@ -14,6 +14,7 @@ import { EvilIcons, Feather, Ionicons } from "@expo/vector-icons";
 import { Back, Button } from "../../components";
 import { StatusBar } from "expo-status-bar";
 import { savedPlaces } from "../../data/data.global";
+import { router } from "expo-router";
 
 const GOOGLE_MAPS_API_KEY = "AIzaSyCk0dBFW1BjUtK3Dold2tHvWQzwWxJVadw";
 
@@ -185,6 +186,7 @@ const Maps = () => {
                 fontFamily: "poppins-regular",
                 fontSize: 14,
               },
+
               listView: {
                 backgroundColor: "white",
                 borderRadius: 16,
@@ -288,10 +290,10 @@ const Maps = () => {
             <Button
               bgColor={colors.primary}
               text="Continue"
+              disabled={pickupLocation && deliveryLocation ? false : true}
               textColor={colors.main}
               onPress={() => {
-                /* Handle confirmation */
-                console.log(pickupLocation, deliveryLocation);
+                router.push("/itemdetails");
               }}
             />
           )}
