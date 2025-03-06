@@ -26,16 +26,16 @@ const Verify = () => {
     }
     const dataToSubmit = {
       username,
-      otp,
+      otp_code: otp,
     };
     console.log(dataToSubmit);
-    const { data, error } = await execute(
-      `${BASE_URL}/otp/verify`,
+    const { data, error, status } = await execute(
+      `${BASE_URL}/otp/verify/`,
       "POST",
       dataToSubmit
     );
-    data && (await handleUserInfo(data?.accessToken));
-    error && console.log(error);
+    console.log(data, error, status);
+    data && (await handleUserInfo(data?.access));
   };
 
   const handleUserInfo = async (token: string) => {

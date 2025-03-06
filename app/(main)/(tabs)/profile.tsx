@@ -6,19 +6,23 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { images } from "@/imports/images.imports";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { colors, textSize } from "@/constants/constants.global";
 import { profileMenu } from "@/data/profile.data";
 import { router } from "expo-router";
+import AuthContext from "@/context/AuthContext";
 
 const Profile = () => {
+  const auth = useContext(AuthContext);
   const handleProfileNavigation = (name: string) => {
     switch (name) {
       case "Account Settings":
         return router.push("/accountsettings");
+      case "Logout":
+        return auth?.logout();
     }
   };
   return (

@@ -82,15 +82,20 @@ const Register = () => {
       !formData.password
     )
       return Alert.alert("Please fill all fields");
-    const { data, error } = await execute(`${BASE_URL}/register/`, "POST", {
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      password: formData.password,
-      phone_number: formData.phone,
-      role: formData.role,
-    });
-    console.log(data);
+    const { data, error, status } = await execute(
+      `${BASE_URL}/register/`,
+      "POST",
+      {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        username: `${formData.firstName.toLocaleLowerCase()}.${formData.lastName.toLocaleLowerCase()}`,
+        email: formData.email,
+        password: formData.password,
+        phone_number: formData.phone,
+        role: formData.role,
+      }
+    );
+    console.log(data, status);
     data &&
       router.push({
         pathname: "/verify",
@@ -184,7 +189,7 @@ const Register = () => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            marginVertical: 10,
+            marginBottom: 10,
           }}
         >
           <Text className="font-pbold">Or</Text>

@@ -1,6 +1,14 @@
-import { View, Text, Dimensions, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  Pressable,
+  ScrollView,
+  Platform,
+  Alert,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { colors, textSize } from "@/constants/constants.global";
+import { BASE_URL, colors, textSize } from "@/constants/constants.global";
 import * as Components from "@/components";
 import { StatusBar } from "expo-status-bar";
 import { Entypo, AntDesign } from "@expo/vector-icons";
@@ -9,11 +17,17 @@ import { Feather } from "@expo/vector-icons";
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
+import { useApiRequest } from "@/hooks/useApiRequest";
 WebBrowser.maybeCompleteAuthSession();
 
 export const ANDROID_CLIENT_ID = process.env.EXPO_PUBLIC_ANDROID_CLIENT_ID;
 export const IOS_CLIENT_ID = process.env.EXPO_PUBLIC_IOS_CLIENT_ID;
 export const WEB_CLIENT_ID = process.env.EXPO_PUBLIC_WEB_CLIENT_ID;
+const platform = Platform.OS;
+interface FormData {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
   const router = useRouter();
@@ -25,21 +39,62 @@ const Login = () => {
     webClientId: WEB_CLIENT_ID,
     scopes: ["profile", "email"],
   });
+  const [formdata, setFormData] = useState<FormData>({
+    username: "",
+    password: "",
+  });
+  const { execute, loading } = useApiRequest();
+  const [secure, setSecure] = useState<boolean>(true);
+
+  const handleChange = (name: keyof FormData, value: string) => {
+    setFormData({ ...formdata, [name]: value });
+  };
+
+  const handleGoogleResponse = async () => {
+    if (response?.type === "success") {
+      const token = response.authentication?.idToken;
+      console.log(token);
+      token && (await handleUserInfo(token));
+    }
+  };
+
+  const handleUserInfo = async (token: string) => {
+    const { data, status, error } = await execute(
+      `${BASE_URL}/auth/google/`,
+      "POST",
+      { id_token: token, platform: platform }
+    );
+    if (status === 200) {
+      console.log(data);
+    } else {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!formdata.username || !formdata.password)
+      return Alert.alert("All fields are required");
+    const { data, status, error } = await execute(
+      `${BASE_URL}/otp/login/`,
+      "POST",
+      formdata
+    );
+    if (status === 200) {
+      console.log(data);
+      router.push({
+        pathname: "/verify",
+        params: {
+          username: data?.username,
+        },
+      });
+    } else {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     handleGoogleResponse();
   }, [response]);
-
-  const handleGoogleResponse = async () => {
-    if (response?.type === "success") {
-      const token = response.authentication?.accessToken;
-      token && handleUserInfo(token);
-      console.log(token);
-      router.replace("/home");
-    }
-  };
-
-  const handleUserInfo = async (token: string) => {};
   return (
     <SafeAreaView
       style={{
@@ -69,14 +124,25 @@ const Login = () => {
           color={colors.gray}
         />
         <Components.InputField
-          placeHolder="Enter phone number"
+          placeHolder="Enter phone number/email"
+          value={formdata.username}
+          onChangeText={(text) => handleChange("username", text)}
           item={<Feather name="mail" size={24} color="black" />}
         />
-
         <Components.InputField
           placeHolder="Enter password"
+          value={formdata.password}
+          secureText={secure}
+          onChangeText={(text) => handleChange("password", text)}
           item={<Feather name="lock" size={24} color="black" />}
-          icon={<Entypo name="eye-with-line" size={24} color="black" />}
+          icon={
+            <Entypo
+              name={secure ? "eye-with-line" : "eye"}
+              size={24}
+              color="black"
+              onPress={() => setSecure(!secure)}
+            />
+          }
         />
         <View
           style={{
@@ -98,8 +164,9 @@ const Login = () => {
           <Components.Button
             bgColor={colors.primary}
             text="Sign In"
-            onPress={() => router.push("/verify")}
+            onPress={() => handleSubmit()}
             textColor={colors.main}
+            loading={loading}
           />
         </View>
 
@@ -109,7 +176,7 @@ const Login = () => {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            marginVertical: 10,
+            marginBottom: 10,
           }}
         >
           <Text className="font-pbold">Or</Text>

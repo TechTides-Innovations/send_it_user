@@ -55,7 +55,7 @@ export const useApiRequest = <T = any>(): ApiResponse<T> => {
         const status = response.status;
 
         if (!response.ok) {
-          throw new Error(responseData || "An error occurred");
+          throw new Error(responseData.message || "An error occurred");
         }
 
         return {
