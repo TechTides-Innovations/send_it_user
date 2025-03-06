@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "SendiT",
+    "name": "Sendit",
     "slug": "sendit",
     "scheme": "sendit",
     "version": "1.0.0",
     "orientation": "portrait",
+    "newArchEnabled": true,
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -24,10 +25,17 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.techtides.sendit"
+      "package": "com.techtides.sendit",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.READ_CONTACTS",
+        "android.permission.WRITE_CONTACTS"
+      ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
@@ -49,8 +57,11 @@
       "typedRoutes": true
     },
     "extra": {
+      "router": {
+        "origin": false
+      },
       "eas": {
-        "projectId": "78ccdb8d-9675-4583-ae2b-823dcb93d76d"
+        "projectId": "d7e5f339-3f47-4103-aabd-b2f8b5f5c6e6"
       }
     }
   }

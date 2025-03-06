@@ -8,7 +8,7 @@ type HeaderProps = {
 };
 const Header = ({ title, subTitle }: HeaderProps) => {
   return (
-    <View style={{ display: "flex", gap: -4, marginVertical: 10 }}>
+    <View style={{ display: "flex", gap: -4 }}>
       <Text style={[textSize.fiveXl]} className="font-pbold">
         {title}
       </Text>

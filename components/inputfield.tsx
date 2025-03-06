@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     padding: 13,
     borderRadius: 14,
     fontFamily: "poppins-medium",
+    color: colors.gray,
   },
   textContainer: {
     marginVertical: 2,

@@ -1,6 +1,6 @@
-import home from "../assets/home.png";
-import work from "../assets/work.png";
-import family from "../assets/family.png";
+import home from "@/assets/home.png";
+import work from "@/assets/work.png";
+import family from "@/assets/family.png";
 
 const savedPlaces = [
   {

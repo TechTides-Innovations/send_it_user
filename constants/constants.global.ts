@@ -42,4 +42,6 @@ const colors = {
   yellow: "#FACC15",
 };
 
-export { textSize, colors };
+const BASE_URL = "https://api.hhtschool.com:9000/api";
+
+export { textSize, colors, BASE_URL };

@@ -3,10 +3,11 @@ import "../global.css";
 import * as Font from "expo-font";
 import * as Location from "expo-location";
 import * as SplashScreen from "expo-splash-screen";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import { View } from "react-native";
+import { AuthProvider } from "../context/AuthContext";
 
-SplashScreen.preventAutoHideAsync(); // Prevents splash from hiding automatically
+SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
   const [appReady, setAppReady] = useState(false);
@@ -14,7 +15,6 @@ const RootLayout = () => {
   useEffect(() => {
     const prepareApp = async () => {
       try {
-        // Load fonts
         await Font.loadAsync({
           "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
           "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
@@ -26,8 +26,12 @@ const RootLayout = () => {
           "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
           "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
         });
-        await Location.requestForegroundPermissionsAsync();
-        setAppReady(true);
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status === "granted") {
+          setAppReady(true);
+        } else {
+          setAppReady(false);
+        }
       } catch (error) {
         console.warn("Error loading app resources:", error);
       }
@@ -43,30 +47,15 @@ const RootLayout = () => {
   }, [appReady]);
 
   if (!appReady) {
-    return null; // Keeps splash screen visible
+    return null;
   }
 
   return (
-    <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="index" />
-        <Stack.Screen
-          name="login"
-          options={{ animation: "slide_from_bottom" }}
-        />
-        <Stack.Screen name="register" />
-        <Stack.Screen name="forgotpassword" />
-        <Stack.Screen name="changepassword" />
-        <Stack.Screen
-          name="(tabs)"
-          options={{ animation: "slide_from_right" }}
-        />
-      </Stack>
-    </View>
+    <AuthProvider>
+      <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+        <Slot />
+      </View>
+    </AuthProvider>
   );
 };
 
