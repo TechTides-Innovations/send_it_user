@@ -50,7 +50,6 @@ interface AuthContextType {
   logout: () => Promise<void>;
   token: string | null;
   user: UserType | null;
-  isLoading: boolean;
   updateUserPartially: (user: UserType) => Promise<void>;
   setUser: (user: UserType) => Promise<void>;
 }

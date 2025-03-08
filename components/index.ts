@@ -6,3 +6,4 @@ export { default as SubTitle } from "./subtitle";
 export { default as TopBar } from "./topbar";
 export { default as Mask } from "./mask";
 export { default as SkeletonLoader } from "./loader";
+export { default as Search } from "./search";

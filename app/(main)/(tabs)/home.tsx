@@ -21,21 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { SkeletonLoader } from "@/components";
 import { CurrentTrackingType, PromosType } from "@/types/types.global";
-
-const promos = [
-  {
-    id: "1",
-    image: require("@/assets/promo-1.png"),
-  },
-  {
-    id: "2",
-    image: require("@/assets/promo-2.png"),
-  },
-  {
-    id: "3",
-    image: require("@/assets/promo-3.png"),
-  },
-];
+import { promos } from "@/data/data.global";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +36,8 @@ const Home = () => {
     switch (name) {
       case "Send Package":
         return router.push("/maps");
+      case "Restaurant":
+        return router.push("/restaurant");
     }
   };
 

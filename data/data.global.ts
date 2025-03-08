@@ -44,4 +44,18 @@ const packages = [
   },
 ];
 
-export { savedPlaces, packages };
+const promos = [
+  {
+    id: "1",
+    image: require("@/assets/promo-1.png"),
+  },
+  {
+    id: "2",
+    image: require("@/assets/promo-2.png"),
+  },
+  {
+    id: "3",
+    image: require("@/assets/promo-3.png"),
+  },
+];
+export { savedPlaces, packages, promos };

@@ -69,7 +69,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         const savedUser = await getUserData();
         setToken(savedToken);
         setUser(savedUser);
-
         const authStatus = !!savedToken;
         setIsAuthenticated(authStatus);
         if (!authStatus && rootSegment !== "(initial)") {
@@ -127,7 +126,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         isAuthenticated,
         token,
-        isLoading,
         user,
         login,
         logout,

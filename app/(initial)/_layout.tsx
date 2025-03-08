@@ -14,7 +14,6 @@ const InitialLayout = () => {
       <Stack.Screen name="verify" />
       <Stack.Screen name="forgotpassword" />
       <Stack.Screen name="changepassword" />
-      <Stack.Screen name="(tabs)" options={{ animation: "slide_from_right" }} />
     </Stack>
   );
 };

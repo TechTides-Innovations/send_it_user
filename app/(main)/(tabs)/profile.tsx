@@ -25,6 +25,7 @@ const Profile = () => {
         return auth?.logout();
     }
   };
+  console.log(auth?.user);
   return (
     <React.Fragment>
       <StatusBar style="dark" />
@@ -38,7 +39,7 @@ const Profile = () => {
           <View className="flex-row items-center justify-between h-full mt-5">
             <View className="flex-row items-center gap-2">
               <Text style={textSize.xl} className="font-pmedium text-white">
-                Hi , Araba Harrison
+                Hi , {`${auth?.user?.username}`}
               </Text>
               <Ionicons name="pencil" size={20} color={colors.main} />
             </View>

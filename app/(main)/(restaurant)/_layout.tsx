@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const ResLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen name="page" />
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="restaurant" />
     </Stack>
   );
 };

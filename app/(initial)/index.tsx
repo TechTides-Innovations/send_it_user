@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/imports/images.imports";
@@ -45,6 +46,7 @@ const { width } = Dimensions.get("window");
 const Index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const onViewRef = React.useRef(({ viewableItems }: any) => {
     if (viewableItems.length > 0) {
@@ -53,6 +55,11 @@ const Index = () => {
   });
 
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   const renderItem = ({ item }: any) => (
     <View style={styles.slide}>
@@ -73,66 +80,81 @@ const Index = () => {
     <React.Fragment>
       <StatusBar style="dark" />
       <SafeAreaView style={styles.container}>
-        <FlatList
-          data={onboardingData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.key}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onViewableItemsChanged={onViewRef.current}
-          viewabilityConfig={viewConfigRef.current}
-          ref={flatListRef}
-          style={{ flex: 1 }}
-        />
-        <View style={styles.paginationContainer}>
-          {onboardingData.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                activeIndex === index ? styles.activeDot : styles.inactiveDot,
-              ]}
+        {loading ? (
+          <View className="flex-1 justify-center items-center">
+            <Image
+              source={require("@/assets/icon.png")}
+              resizeMode="cover"
+              style={{ width: 100, height: 100 }}
+              className="rounded-full"
             />
-          ))}
-        </View>
-        <View className="flex-row justify-center items-center px-8 pb-10">
-          <View
-            className={` ${
-              activeIndex === 2 ? "border-none" : " border border-primary"
-            } rounded-full`}
-          >
-            <TouchableOpacity
-              className={`bg-primary m-3 justify-center items-center  ${
-                activeIndex === onboardingData.length - 1
-                  ? "rounded-lg py-4 px-24"
-                  : "rounded-full p-4"
-              }`}
-              onPress={() => {
-                if (activeIndex === onboardingData.length - 1) {
-                  router.replace("/login");
-                } else {
-                  flatListRef.current?.scrollToIndex({
-                    index: activeIndex + 1,
-                    animated: true,
-                  });
-                }
-              }}
-            >
-              {activeIndex === onboardingData.length - 1 ? (
-                <Text className="font-psemibold text-xl text-white">
-                  Get Started!
-                </Text>
-              ) : (
-                <MaterialIcons
-                  name="arrow-forward-ios"
-                  size={25}
-                  color={colors.main}
-                />
-              )}
-            </TouchableOpacity>
           </View>
-        </View>
+        ) : (
+          <>
+            <FlatList
+              data={onboardingData}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.key}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              onViewableItemsChanged={onViewRef.current}
+              viewabilityConfig={viewConfigRef.current}
+              ref={flatListRef}
+              style={{ flex: 1 }}
+            />
+            <View style={styles.paginationContainer}>
+              {onboardingData.map((_, index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.dot,
+                    activeIndex === index
+                      ? styles.activeDot
+                      : styles.inactiveDot,
+                  ]}
+                />
+              ))}
+            </View>
+            <View className="flex-row justify-center items-center px-8 pb-10">
+              <View
+                className={` ${
+                  activeIndex === 2 ? "border-none" : " border border-primary"
+                } rounded-full`}
+              >
+                <TouchableOpacity
+                  className={`bg-primary m-3 justify-center items-center  ${
+                    activeIndex === onboardingData.length - 1
+                      ? "rounded-lg py-4 px-24"
+                      : "rounded-full p-4"
+                  }`}
+                  onPress={() => {
+                    if (activeIndex === onboardingData.length - 1) {
+                      router.replace("/login");
+                    } else {
+                      flatListRef.current?.scrollToIndex({
+                        index: activeIndex + 1,
+                        animated: true,
+                      });
+                    }
+                  }}
+                >
+                  {activeIndex === onboardingData.length - 1 ? (
+                    <Text className="font-psemibold text-xl text-white">
+                      Get Started!
+                    </Text>
+                  ) : (
+                    <MaterialIcons
+                      name="arrow-forward-ios"
+                      size={25}
+                      color={colors.main}
+                    />
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </>
+        )}
       </SafeAreaView>
     </React.Fragment>
   );
